@@ -5,11 +5,14 @@ include(CheckCompilerFlag)
 
 project(gl4es LANGUAGES C)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
-link_directories(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+#set(USE_ANDROID_LOG ON)
+set(ANDROID ON)
+
+#link_directories(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 option(PANDORA "Set to ON if targeting an OpenPandora device" ${PANDORA})
 option(PYRA "Set to ON if targeting an Dragonbox Pyra device" ${PYRA})
@@ -256,7 +259,7 @@ macro(create_test test_name test_filename calls_count tolerance)
     if (${ARGC} EQUAL 5)
         add_test(${test_name}
             ${CMAKE_COMMAND}
-            -D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+            #-D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
             -D TESTS_DIRECTORY=${CMAKE_SOURCE_DIR}/tests
             -D TEST_FILENAME=${test_filename}
             -D CALLS=${calls_count}
@@ -267,7 +270,7 @@ macro(create_test test_name test_filename calls_count tolerance)
         if (${ARGV4} STREQUAL "NOEXTRACT_RANGE")
             add_test(${test_name}
                 ${CMAKE_COMMAND}
-                -D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+                #-D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
                 -D TESTS_DIRECTORY=${CMAKE_SOURCE_DIR}/tests
                 -D TEST_FILENAME=${test_filename}
                 -D CALLS=${calls_count}
@@ -277,7 +280,7 @@ macro(create_test test_name test_filename calls_count tolerance)
         else (${ARGV4} STREQUAL "NOEXTRACT_RANGE")
             add_test(${test_name}
                 ${CMAKE_COMMAND}
-                -D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+                #-D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
                 -D TESTS_DIRECTORY=${CMAKE_SOURCE_DIR}/tests
                 -D TEST_FILENAME=${test_filename}
                 -D CALLS=${calls_count}
@@ -289,7 +292,7 @@ macro(create_test test_name test_filename calls_count tolerance)
     else (${ARGC} EQUAL 5)
         add_test(${test_name}
             ${CMAKE_COMMAND}
-            -D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+            #-D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
             -D TESTS_DIRECTORY=${CMAKE_SOURCE_DIR}/tests
             -D TEST_FILENAME=${test_filename}
             -D CALLS=${calls_count}
@@ -302,7 +305,7 @@ macro(create_test_GLES test_name GLES test_filename calls_count tolerance)
     if (${ARGC} EQUAL 5)
         add_test(${test_name}_GLES${GLES}
             ${CMAKE_COMMAND}
-            -D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+            #-D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
             -D TESTS_DIRECTORY=${CMAKE_SOURCE_DIR}/tests
             -D TEST_FILENAME=${test_filename}
             -D CALLS=${calls_count}
@@ -313,7 +316,7 @@ macro(create_test_GLES test_name GLES test_filename calls_count tolerance)
     else (${ARGC} EQUAL 5)
         add_test(${test_name}_GLES${GLES}
             ${CMAKE_COMMAND}
-            -D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+            #-D LIBRARY_FOLDER=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
             -D TESTS_DIRECTORY=${CMAKE_SOURCE_DIR}/tests
             -D TEST_FILENAME=${test_filename}
             -D CALLS=${calls_count}
